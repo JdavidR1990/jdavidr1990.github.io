@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>David Restrepo · Diseñador gráfico en Bogotá</title>
+  <meta name="description" content="Portafolio de David Restrepo, diseñador gráfico en Bogotá. Fotografía, ilustración y pintura digital. Se diseña bien desde la primera vez.">
+  <meta name="author" content="David Restrepo">
+  <meta name="theme-color" content="#1B2336">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="David Restrepo · Diseñador gráfico">
+  <meta property="og:description" content="Se diseña bien desde la primera vez. Portafolio de diseño gráfico en Bogotá.">
+  <meta property="og:image" content="img/proyecto-2.jpg">
+  <meta property="og:locale" content="es_CO">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23F2A541'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-weight='700' font-size='28' text-anchor='middle' fill='%231B2336'%3EDR%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Ficha de diseño (tokens) ===== */
+    :root {
+      --fondo: #FFFFFF;
+      --texto: #1B2336;
+      --principal: #F2A541;
+      --acento: #2BB3AE;
+      --linea: rgba(27, 35, 54, 0.12);
+
+      --f-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+      --f-texto: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+      --t-titulo: 700 48px/56px var(--f-titulo);   /* Títulos: Fraunces 48 px Bold */
+      --t-subtitulo: 400 24px/32px var(--f-titulo); /* Subtítulos: Fraunces 24 px */
+      --t-texto: 400 16px/26px var(--f-texto);       /* Texto: Inter 16 px */
+      --t-boton: 700 14px/20px var(--f-texto);       /* Botones: Inter 14 px Bold */
+
+      --margen: 80px;          /* Márgenes escritorio */
+      --entre-secciones: 120px;
+      --ancho-max: 1280px;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --dur: 0.45s;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font: var(--t-texto);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    h1, h2, h3, p, ul { margin: 0; }
+    ul { padding: 0; list-style: none; }
+
+    :focus-visible {
+      outline: 3px solid var(--acento);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .saltar {
+      position: absolute; left: 16px; top: -60px; z-index: 100;
+      background: var(--texto); color: var(--fondo);
+      padding: 12px 20px; border-radius: 999px; font: var(--t-boton); text-decoration: none;
+      transition: top 0.2s var(--ease-out);
+    }
+    .saltar:focus { top: 16px; }
+
+    .contenedor {
+      width: 100%;
+      max-width: calc(var(--ancho-max) + 2 * var(--margen));
+      margin: 0 auto;
+      padding-left: var(--margen);
+      padding-right: var(--margen);
+    }
+
+    .titulo { font: var(--t-titulo); letter-spacing: 0; }
+    .subtitulo { font: var(--t-subtitulo); }
+
+    /* ===== Botones ===== */
+    .boton {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 14px 24px;
+      border-radius: 999px; border: 1.5px solid transparent;
+      font: var(--t-boton); letter-spacing: 0.2px; text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s var(--ease-out), background-color 0.25s, box-shadow 0.25s var(--ease-out), color 0.25s;
+    }
+    .boton--principal { background: var(--principal); color: var(--texto); }
+    .boton--principal:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(242, 165, 65, 0.35); }
+    .boton--secundario { background: transparent; color: var(--texto); border-color: var(--texto); }
+    .boton--secundario:hover { background: var(--texto); color: var(--fondo); transform: translateY(-2px); }
+    .boton:active { transform: translateY(0); }
+
+    /* ===== Navegación ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      -webkit-backdrop-filter: saturate(160%) blur(10px);
+      backdrop-filter: saturate(160%) blur(10px);
+      transition: box-shadow 0.3s;
+    }
+    .nav.con-sombra { box-shadow: 0 1px 0 var(--linea); }
+    .nav__barra {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 28px; padding-bottom: 28px;
+    }
+    .nav__logo { font: var(--t-subtitulo); text-decoration: none; }
+    .nav__enlaces { display: flex; align-items: center; gap: 32px; }
+    .nav__enlace {
+      position: relative; font: var(--t-boton); text-decoration: none; padding: 6px 0;
+    }
+    .nav__enlace::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+      background: var(--principal); border-radius: 2px;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s var(--ease-out);
+    }
+    .nav__enlace:hover::after, .nav__enlace[aria-current="true"]::after { transform: scaleX(1); }
+    .nav__menu-btn { display: none; }
+
+    /* ===== Inicio ===== */
+    .inicio { padding-top: 96px; padding-bottom: var(--entre-secciones); }
+    .inicio__grid { display: flex; align-items: center; gap: 80px; }
+    .inicio__texto { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .etiqueta { display: inline-flex; align-items: center; gap: 10px; font: var(--t-boton); }
+    .etiqueta__punto { width: 10px; height: 10px; border-radius: 50%; background: var(--acento); }
+    .inicio__botones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    .inicio__deco { flex: 0 0 440px; width: 440px; height: 440px; }
+    .inicio__deco svg { width: 100%; height: 100%; overflow: visible; }
+    .deco-circulo { transform-origin: 260px 180px; animation: flotar 9s ease-in-out infinite; }
+    .deco-anillo { transform-origin: 100px 320px; animation: girar 18s linear infinite; }
+    .deco-punto { animation: flotar 6s ease-in-out infinite reverse; }
+    @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes girar { to { transform: rotate(360deg); } }
+
+    /* ===== Sobre mí ===== */
+    .sobre-mi { padding-bottom: var(--entre-secciones); }
+    .sobre-mi__grid { display: flex; align-items: center; gap: 80px; }
+    .sobre-mi__foto {
+      flex: 0 0 480px; width: 480px; aspect-ratio: 1 / 1; object-fit: cover;
+      border-radius: 24px; background: #E9EBEF;
+    }
+    .sobre-mi__texto { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .herramientas { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 8px 16px; border: 1px solid var(--texto); border-radius: 999px;
+      font: var(--t-boton); letter-spacing: 0.2px;
+      transition: background-color 0.25s, color 0.25s, transform 0.25s var(--ease-out);
+    }
+    .chip:hover { background: var(--texto); color: var(--fondo); transform: translateY(-2px); }
+
+    /* ===== Proyectos ===== */
+    .proyectos { padding-bottom: var(--entre-secciones); }
+    .proyectos__encabezado { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+    .proyectos__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .tarjeta { display: flex; flex-direction: column; gap: 16px; }
+    .tarjeta__marco { border-radius: 16px; overflow: hidden; background: #E9EBEF; aspect-ratio: 4 / 5;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out); }
+    .tarjeta__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out); }
+    .tarjeta:hover .tarjeta__marco { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(27, 35, 54, 0.16); }
+    .tarjeta:hover .tarjeta__img { transform: scale(1.04); }
+    .tarjeta__categoria { font: var(--t-boton); letter-spacing: 0.2px; }
+
+    /* ===== Contacto ===== */
+    .contacto { padding-bottom: var(--entre-secciones); }
+    .contacto__panel {
+      background: var(--texto); color: var(--fondo);
+      border-radius: 32px; padding: 80px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+    }
+    .contacto__panel .boton { margin-top: 8px; }
+    .contacto__correo { color: var(--fondo); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.35); text-underline-offset: 4px; overflow-wrap: anywhere; transition: text-decoration-color 0.25s; }
+    .contacto__correo:hover { text-decoration-color: var(--principal); }
+    .redes { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+    .redes a {
+      font: var(--t-boton); color: var(--principal); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px; padding: 4px 0;
+    }
+    .redes a span { display: inline-block; transition: transform 0.25s var(--ease-out); }
+    .redes a:hover span { transform: translate(3px, -3px); }
+    .contacto__panel :focus-visible { outline-color: var(--principal); }
+
+    /* ===== Pie ===== */
+    .pie { border-top: 1px solid var(--linea); }
+    .pie__barra { display: flex; justify-content: space-between; gap: 8px; padding-top: 32px; padding-bottom: 32px; }
+
+    /* ===== Aparición en secuencia (Transitions) ===== */
+    .js .aparece { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+    .js .aparece.visible { opacity: 1; transform: none; }
+
+    /* ===== Tableta ===== */
+    @media (max-width: 1100px) {
+      :root { --margen: 40px; }
+      .inicio__deco { flex-basis: 320px; width: 320px; height: 320px; }
+      .sobre-mi__foto { flex-basis: 360px; width: 360px; }
+      .proyectos__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ===== Celular (diseño de 390 px) ===== */
+    @media (max-width: 760px) {
+      :root { --margen: 20px; }
+      .nav__barra { padding-top: 20px; padding-bottom: 20px; }
+      .nav__menu-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 44px; height: 44px; margin-left: auto; margin-right: -10px;
+        background: none; border: 0; color: var(--texto); cursor: pointer; border-radius: 12px;
+      }
+      .nav__menu-btn .linea { transition: transform 0.35s var(--ease-out), opacity 0.2s; transform-origin: 12px 12px; }
+      .nav__menu-btn[aria-expanded="true"] .l1 { transform: translateY(6px) rotate(45deg); }
+      .nav__menu-btn[aria-expanded="true"] .l2 { opacity: 0; }
+      .nav__menu-btn[aria-expanded="true"] .l3 { transform: translateY(-6px) rotate(-45deg); }
+      .nav__enlaces {
+        position: absolute; left: 0; right: 0; top: 100%;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--fondo); box-shadow: 0 16px 32px rgba(27, 35, 54, 0.12);
+        padding: 8px var(--margen) 24px;
+        clip-path: inset(0 0 100% 0); opacity: 0; visibility: hidden;
+        transition: clip-path 0.4s var(--ease-out), opacity 0.3s, visibility 0s linear 0.4s;
+      }
+      .nav__enlaces.abierto { clip-path: inset(0 0 0 0); opacity: 1; visibility: visible; transition: clip-path 0.4s var(--ease-out), opacity 0.3s, visibility 0s; }
+      .nav__enlace { display: block; padding: 14px 0; border-bottom: 1px solid var(--linea); font: var(--t-texto); font-weight: 700; }
+      .nav__enlace::after { display: none; }
+      .nav__enlaces .boton { margin-top: 16px; }
+      .nav__enlaces.abierto > * { animation: entrar 0.4s var(--ease-out) both; }
+      .nav__enlaces.abierto > *:nth-child(2) { animation-delay: 40ms; }
+      .nav__enlaces.abierto > *:nth-child(3) { animation-delay: 80ms; }
+      .nav__enlaces.abierto > *:nth-child(4) { animation-delay: 120ms; }
+      .nav__enlaces.abierto > *:nth-child(5) { animation-delay: 160ms; }
+      @keyframes entrar { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+      .inicio { padding-top: 56px; }
+      .inicio__grid { display: block; }
+      .inicio__deco { display: none; }
+      .sobre-mi__grid { flex-direction: column; align-items: stretch; gap: 32px; }
+      .sobre-mi__foto { flex-basis: auto; width: 100%; }
+      .proyectos__encabezado { margin-bottom: 32px; }
+      .proyectos__grid { grid-template-columns: 1fr; gap: 48px; }
+      .contacto__panel { padding: 32px; border-radius: 24px; }
+      .pie__barra { flex-direction: column; }
+    }
+
+    /* ===== Respeta a quien prefiere poco movimiento ===== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+      .js .aparece { opacity: 1; transform: none; }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="nav" id="nav">
+    <div class="contenedor nav__barra">
+      <a class="nav__logo" href="#inicio">David Restrepo</a>
+      <button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path class="linea l1" d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path class="linea l2" d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path class="linea l3" d="M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <nav aria-label="Principal">
+        <ul class="nav__enlaces" id="menu">
+          <li><a class="nav__enlace" href="#inicio">Inicio</a></li>
+          <li><a class="nav__enlace" href="#sobre-mi">Sobre mí</a></li>
+          <li><a class="nav__enlace" href="#proyectos">Proyectos</a></li>
+          <li><a class="nav__enlace" href="#contacto">Contacto</a></li>
+          <li><a class="boton boton--principal" href="mailto:jrestrepo122@estudiantes.areandina.edu.co">Escríbeme</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- INICIO -->
+    <section class="inicio" id="inicio" aria-labelledby="titulo-inicio">
+      <div class="contenedor inicio__grid">
+        <div class="inicio__texto">
+          <p class="etiqueta aparece" style="--i:0"><span class="etiqueta__punto" aria-hidden="true"></span>Diseñador gráfico · Bogotá</p>
+          <h1 class="titulo aparece" id="titulo-inicio" style="--i:1">David Restrepo</h1>
+          <p class="subtitulo aparece" style="--i:2">Se diseña bien desde la primera vez.</p>
+          <div class="inicio__botones aparece" style="--i:3">
+            <a class="boton boton--principal" href="#proyectos">Ver proyectos</a>
+            <a class="boton boton--secundario" href="#contacto">Contáctame</a>
+          </div>
+        </div>
+        <div class="inicio__deco" aria-hidden="true">
+          <svg viewBox="0 0 440 440">
+            <circle class="deco-circulo" cx="260" cy="180" r="180" fill="#F2A541"/>
+            <g class="deco-anillo"><circle cx="100" cy="320" r="92" fill="none" stroke="#2BB3AE" stroke-width="16"/></g>
+            <circle class="deco-punto" cx="354" cy="384" r="24" fill="#1B2336"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="sobre-mi" id="sobre-mi" aria-labelledby="titulo-sobre-mi">
+      <div class="contenedor sobre-mi__grid">
+        <img class="sobre-mi__foto aparece" src="img/foto-perfil.jpg" width="800" height="800" loading="lazy"
+             alt="Autorretrato de David Restrepo en blanco y negro, con gafas y sombrero, fragmentado en cuadros diagonales">
+        <div class="sobre-mi__texto">
+          <h2 class="titulo aparece" id="titulo-sobre-mi">Sobre mí</h2>
+          <p class="aparece" style="--i:1">Diseñador gráfico profesional, único y dispuesto a entregar lo mejor de mis habilidades para lograr el mejor resultado.</p>
+          <h3 class="subtitulo aparece" style="--i:2">Herramientas</h3>
+          <ul class="herramientas aparece" style="--i:3" aria-label="Herramientas que manejo">
+            <li class="chip">Figma</li>
+            <li class="chip">Illustrator</li>
+            <li class="chip">Photoshop</li>
+            <li class="chip">Claude</li>
+            <li class="chip">Blender</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section class="proyectos" id="proyectos" aria-labelledby="titulo-proyectos">
+      <div class="contenedor">
+        <div class="proyectos__encabezado">
+          <h2 class="titulo aparece" id="titulo-proyectos">Proyectos</h2>
+          <p class="aparece" style="--i:1">Tres trabajos recientes: fotografía, ilustración vectorial y pintura digital.</p>
+        </div>
+        <div class="proyectos__grid">
+          <article class="tarjeta aparece" style="--i:0">
+            <div class="tarjeta__marco">
+              <img class="tarjeta__img" src="img/proyecto-1.jpg" width="1000" height="1250" loading="lazy"
+                   alt="Póster del autorretrato Entre cuadros: rostro de David en blanco y negro dividido en cuadros diagonales, con el título en letras grandes">
+            </div>
+            <p class="tarjeta__categoria">Fotografía · Autorretrato</p>
+            <h3 class="subtitulo">Entre cuadros</h3>
+            <p>Autorretrato en estudio que fragmenta mi rostro en cuadros para invitar a una mirada al interior.</p>
+          </article>
+          <article class="tarjeta aparece" style="--i:1">
+            <div class="tarjeta__marco">
+              <img class="tarjeta__img" src="img/proyecto-2.jpg" width="1000" height="1250" loading="lazy"
+                   alt="Ilustración de un puerco espín con gafas amarillas, chaqueta negra y jean azul caminando sobre fondo oscuro y verde, firmada David Restrepo, diseñador gráfico">
+            </div>
+            <p class="tarjeta__categoria">Ilustración · Marca personal</p>
+            <h3 class="subtitulo">Postal Puerco Espín</h3>
+            <p>Postal ilustrada en vector: un puerco espín con actitud que firma como diseñador gráfico.</p>
+          </article>
+          <article class="tarjeta aparece" style="--i:2">
+            <div class="tarjeta__marco">
+              <img class="tarjeta__img" src="img/proyecto-3.jpg" width="1000" height="1250" loading="lazy"
+                   alt="Pintura digital de un buzo con los brazos abiertos bajo el agua mientras un tiburón abre la boca sobre él">
+            </div>
+            <p class="tarjeta__categoria">Pintura digital</p>
+            <h3 class="subtitulo">Bajo la superficie</h3>
+            <p>Ilustración digital de un buzo frente a un tiburón, construida con luz, burbujas y profundidad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="contenedor">
+        <div class="contacto__panel aparece">
+          <h2 class="titulo" id="titulo-contacto">Contacto</h2>
+          <p class="subtitulo">¿Tienes un proyecto en mente? Escríbeme y lo diseñamos bien desde la primera vez.</p>
+          <a class="boton boton--principal" href="mailto:jrestrepo122@estudiantes.areandina.edu.co">Escríbeme</a>
+          <a class="contacto__correo" href="mailto:jrestrepo122@estudiantes.areandina.edu.co">jrestrepo122@estudiantes.areandina.edu.co</a>
+          <ul class="redes" aria-label="Redes sociales">
+            <li><a href="https://www.behance.net/joserestrep1" target="_blank" rel="noopener noreferrer">Behance <span aria-hidden="true">↗</span><span class="sr">(se abre en otra pestaña)</span></a></li>
+            <li><a href="https://www.instagram.com/david_restrepo_villegas/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span><span class="sr">(se abre en otra pestaña)</span></a></li>
+            <li><a href="https://www.linkedin.com/in/david-restrepo-a11b8219a/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr">(se abre en otra pestaña)</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__barra">
+      <p>© 2026 David Restrepo</p>
+      <p>Diseñado en Figma · Publicado en GitHub Pages</p>
+    </div>
+  </footer>
+
+  <style>
+    .sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .redes a span.sr { transform: none !important; }
+  </style>
+
+  <script>
+    (function () {
+      // Menú del celular: se abre suave, se cierra con Esc o al elegir un enlace
+      var btn = document.querySelector('.nav__menu-btn');
+      var menu = document.getElementById('menu');
+      function cerrar() {
+        menu.classList.remove('abierto');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Abrir menú');
+      }
+      btn.addEventListener('click', function () {
+        var abierto = menu.classList.toggle('abierto');
+        btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+        btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+      });
+      menu.addEventListener('click', function (e) { if (e.target.closest('a')) cerrar(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.classList.contains('abierto')) { cerrar(); btn.focus(); }
+      });
+      window.addEventListener('resize', function () { if (window.innerWidth > 760) cerrar(); });
+
+      // Sombra suave en la barra al bajar
+      var nav = document.getElementById('nav');
+      function sombra() { nav.classList.toggle('con-sombra', window.scrollY > 8); }
+      window.addEventListener('scroll', sombra, { passive: true }); sombra();
+
+      // Enlace activo según la sección visible
+      var enlaces = Array.prototype.slice.call(document.querySelectorAll('.nav__enlace'));
+      var secciones = enlaces.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+      // Textos y tarjetas que aparecen en secuencia
+      var items = document.querySelectorAll('.aparece');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function (el) { io.observe(el); });
+
+      var ioNav = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (en) {
+          if (en.isIntersecting) {
+            enlaces.forEach(function (a) {
+              a.setAttribute('aria-current', a.getAttribute('href') === '#' + en.target.id ? 'true' : 'false');
+            });
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      secciones.forEach(function (s) { if (s) ioNav.observe(s); });
+    })();
+  </script>
+</body>
+</html>
